@@ -1,8 +1,10 @@
+import { TaskBar } from './components/TaskBar';
+
 function App() {
   return (
-    <>
-      <h1 className="p-2">Página inicial</h1>
-    </>
+    <div className="bg-wallpaper h-screen w-screen">
+      <TaskBar />
+    </div>
   );
 }
 
