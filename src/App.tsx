@@ -1,11 +1,7 @@
-import { TaskBar } from './components/TaskBar';
+import { Desktop } from './layouts/Desktop';
 
 function App() {
-  return (
-    <div className="bg-wallpaper h-screen w-screen">
-      <TaskBar />
-    </div>
-  );
+  return <Desktop />;
 }
 
 export default App;

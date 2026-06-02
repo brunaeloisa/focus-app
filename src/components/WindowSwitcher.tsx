@@ -1,35 +1,12 @@
-import { useState } from 'react';
 import { Button3D } from './Button3D';
+import { type Window } from '../types/window.types';
 
-interface Window {
-  id: string;
-  title: string;
-  isMinimized: boolean;
-  isActive: boolean;
+interface WindowSwitcherProps {
+  windows: Window[];
+  setWindows: React.Dispatch<React.SetStateAction<Window[]>>;
 }
 
-export function WindowSwitcher() {
-  const [windows, setWindows] = useState<Window[]>([
-    {
-      id: 'janela1',
-      title: 'Nova Janela 1',
-      isMinimized: true,
-      isActive: false
-    },
-    {
-      id: 'janela2',
-      title: 'Nova Janela 2',
-      isMinimized: true,
-      isActive: false
-    },
-    {
-      id: 'janela3',
-      title: 'Nova Janela 3',
-      isMinimized: false,
-      isActive: true
-    }
-  ]);
-
+export function WindowSwitcher({ windows, setWindows }: WindowSwitcherProps) {
   function toggleWindow(windowId: string) {
     setWindows((prev) => {
       const target = prev.find((win) => win.id === windowId);

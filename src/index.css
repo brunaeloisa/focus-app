@@ -7,6 +7,8 @@
   --color-highlight: #f3f3f3;
   --color-midtone: #8b8b8b;
   --color-wallpaper: #008080;
+  --color-active: #000080;
+  --color-inactive: #808080;
 }
 
 @layer base {

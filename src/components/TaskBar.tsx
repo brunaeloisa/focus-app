@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Button3D } from './Button3D';
 import { WindowSwitcher } from './WindowSwitcher';
+import type { Window } from '../types/window.types';
+
+interface TaskBarProps {
+  windows: Window[];
+  setWindows: React.Dispatch<React.SetStateAction<Window[]>>;
+}
 
 function getCurrentTime() {
   const now = new Date();
@@ -8,7 +14,7 @@ function getCurrentTime() {
   return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 }
 
-export function TaskBar() {
+export function TaskBar({ windows, setWindows }: TaskBarProps) {
   const [time, setTime] = useState(getCurrentTime());
 
   useEffect(() => {
@@ -34,7 +40,7 @@ export function TaskBar() {
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <Button3D className="px-2.5 py-0.5 font-semibold">Iniciar</Button3D>
 
-        <WindowSwitcher />
+        <WindowSwitcher windows={windows} setWindows={setWindows} />
       </div>
 
       <div className="border-midtone border-r-highlight border-b-highlight border-2 px-2 py-0.5">
