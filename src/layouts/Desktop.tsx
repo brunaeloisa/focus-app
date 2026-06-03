@@ -26,11 +26,11 @@ export function Desktop() {
   ]);
 
   return (
-    <div className="bg-wallpaper h-screen w-screen">
+    <div className="bg-wallpaper relative h-screen w-screen overflow-hidden">
       <TaskBar windows={windows} setWindows={setWindows} />
 
       {windows.map((win) => (
-        <WindowView windowData={win} setWindows={setWindows}>
+        <WindowView windowData={win} setWindows={setWindows} key={win.id}>
           Conteúdo da Janela.
         </WindowView>
       ))}
