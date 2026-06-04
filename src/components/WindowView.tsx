@@ -5,19 +5,21 @@ import Draggable, {
 } from 'react-draggable';
 import { type Window } from '../types/window.types';
 import { Button3D } from './Button3D';
+import { useAppDispatch } from '../store/hooks';
+import {
+  closeWindow,
+  focusWindow,
+  minimizeWindow
+} from '../store/slices/windowSlice';
 
 interface WindowViewProps {
   windowData: Window;
-  setWindows: React.Dispatch<React.SetStateAction<Window[]>>;
   children: React.ReactNode;
 }
 
-export function WindowView({
-  windowData,
-  setWindows,
-  children
-}: WindowViewProps) {
+export function WindowView({ windowData, children }: WindowViewProps) {
   const nodeRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   const [bounds, setBounds] = useState({
     left: 0,
@@ -27,12 +29,7 @@ export function WindowView({
   });
 
   function handleFocus() {
-    setWindows((prev) =>
-      prev.map((win) => ({
-        ...win,
-        isActive: win.id === windowData.id
-      }))
-    );
+    dispatch(focusWindow(windowData.id));
   }
 
   function handleStart(_: DraggableEvent, data: DraggableData) {
@@ -52,18 +49,12 @@ export function WindowView({
 
   function handleMinimize(e: React.MouseEvent) {
     e.stopPropagation();
-    setWindows((prev) =>
-      prev.map((win) =>
-        win.id === windowData.id
-          ? { ...windowData, isMinimized: true, isActive: false }
-          : win
-      )
-    );
+    dispatch(minimizeWindow(windowData.id));
   }
 
   function handleClose(e: React.MouseEvent) {
     e.stopPropagation();
-    setWindows((prev) => prev.filter((win) => win.id !== windowData.id));
+    dispatch(closeWindow(windowData.id));
   }
 
   return (
