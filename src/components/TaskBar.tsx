@@ -30,7 +30,7 @@ export function TaskBar() {
   }, []);
 
   return (
-    <div className="border-t-highlight bg-base fixed bottom-0 flex h-10 w-full items-center justify-between gap-3 border-t-2 px-1 pb-px">
+    <footer className="border-t-highlight bg-base h-taskbar fixed bottom-0 flex w-full items-center justify-between gap-3 border-t-2 px-1 pb-px">
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <Button3D className="px-2.5 py-0.5 font-semibold">Iniciar</Button3D>
         <WindowSwitcher />
@@ -39,6 +39,6 @@ export function TaskBar() {
       <div className="border-midtone border-r-highlight border-b-highlight border-2 px-2 py-0.5">
         {time}
       </div>
-    </div>
+    </footer>
   );
 }

@@ -2,6 +2,7 @@
 
 @theme {
   --font-mono: 'W95FA', 'Microsoft Sans Serif', 'Tahoma', monospace;
+  --spacing-taskbar: 40px;
   --color-base: #c0c0c0;
   --color-shadow: #414141;
   --color-highlight: #f3f3f3;

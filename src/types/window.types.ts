@@ -1,4 +1,4 @@
-export interface Window {
+export interface AppWindow {
   id: string;
   title: string;
   isMinimized: boolean;

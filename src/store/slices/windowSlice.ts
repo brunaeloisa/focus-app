@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type Window as AppWindow } from '../../types/window.types';
+import { type AppWindow } from '../../types/window.types';
 
 interface WindowState {
   windows: AppWindow[];

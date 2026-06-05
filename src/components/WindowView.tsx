@@ -3,7 +3,7 @@ import Draggable, {
   type DraggableData,
   type DraggableEvent
 } from 'react-draggable';
-import { type Window } from '../types/window.types';
+import { type AppWindow } from '../types/window.types';
 import { Button3D } from './Button3D';
 import { useAppDispatch } from '../store/hooks';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../store/slices/windowSlice';
 
 interface WindowViewProps {
-  windowData: Window;
+  windowData: AppWindow;
   children: React.ReactNode;
 }
 
