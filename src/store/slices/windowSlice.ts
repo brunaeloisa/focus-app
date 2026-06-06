@@ -6,42 +6,32 @@ interface WindowState {
 }
 
 const initialState: WindowState = {
-  windows: [
-    {
-      id: 'janela1',
-      title: 'Nova Janela 1',
-      isMinimized: false,
-      isActive: true
-    },
-    {
-      id: 'janela2',
-      title: 'Nova Janela 2',
-      isMinimized: true,
-      isActive: false
-    },
-    {
-      id: 'janela3',
-      title: 'Nova Janela 3',
-      isMinimized: true,
-      isActive: false
-    }
-  ]
+  windows: []
 };
+
+function bringToFront(windows: AppWindow[], id: string) {
+  const targetWindow = windows.find((win) => win.id === id);
+  if (targetWindow) targetWindow.isMinimized = false;
+  windows.forEach((win) => (win.isActive = win.id === id));
+}
 
 export const windowSlice = createSlice({
   name: 'windows',
   initialState: initialState,
   reducers: {
     createWindow: (state, action: PayloadAction<AppWindow>) => {
-      state.windows.push(action.payload);
+      const newWindow = action.payload;
+      const exists = state.windows.some((win) => win.id === newWindow.id);
+
+      if (!exists) state.windows.push(newWindow);
+
+      bringToFront(state.windows, newWindow.id);
     },
     closeWindow: (state, action: PayloadAction<string>) => {
       state.windows = state.windows.filter((win) => win.id !== action.payload);
     },
     focusWindow: (state, action: PayloadAction<string>) => {
-      state.windows.forEach(
-        (win) => (win.isActive = win.id === action.payload)
-      );
+      bringToFront(state.windows, action.payload);
     },
     minimizeWindow: (state, action: PayloadAction<string>) => {
       const win = state.windows.find((win) => win.id === action.payload);
@@ -67,6 +57,12 @@ export const windowSlice = createSlice({
   }
 });
 
-export const { closeWindow, minimizeWindow, focusWindow, toggleWindow } =
-  windowSlice.actions;
+export const {
+  createWindow,
+  closeWindow,
+  minimizeWindow,
+  focusWindow,
+  toggleWindow
+} = windowSlice.actions;
+
 export default windowSlice.reducer;
