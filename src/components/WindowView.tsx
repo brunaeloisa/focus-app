@@ -67,7 +67,8 @@ export function WindowView({ windowData, children }: WindowViewProps) {
       onStart={handleStart}
     >
       <div
-        className={`out-3d bg-base absolute top-1/2 left-1/2 min-h-32 min-w-64 p-0.5 ${windowData.isMinimized ? 'hidden' : ''} ${windowData.isActive ? 'z-20' : 'z-10'}`}
+        className={`out-3d bg-base absolute top-1/2 left-1/2 min-h-32 min-w-64 p-0.5 ${windowData.isMinimized ? 'hidden' : ''}`}
+        style={{ zIndex: windowData.z ?? 100 }}
         onClick={handleFocus}
         ref={nodeRef}
       >

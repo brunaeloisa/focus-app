@@ -9,10 +9,27 @@ const initialState: WindowState = {
   windows: []
 };
 
+let nextZIndex = 100;
+
 function bringToFront(windows: AppWindow[], id: string) {
   const targetWindow = windows.find((win) => win.id === id);
-  if (targetWindow) targetWindow.isMinimized = false;
+
+  if (targetWindow) {
+    targetWindow.isMinimized = false;
+    targetWindow.z = nextZIndex;
+    nextZIndex++;
+  }
+
   windows.forEach((win) => (win.isActive = win.id === id));
+}
+
+function focusNextWindow(windows: AppWindow[]) {
+  const openWindows = windows.filter((win) => !win.isMinimized);
+  openWindows.sort((a, b) => (b.z ?? 0) - (a.z ?? 0));
+
+  windows.forEach((win) => {
+    win.isActive = win.id === openWindows[0]?.id;
+  });
 }
 
 export const windowSlice = createSlice({
@@ -29,6 +46,7 @@ export const windowSlice = createSlice({
     },
     closeWindow: (state, action: PayloadAction<string>) => {
       state.windows = state.windows.filter((win) => win.id !== action.payload);
+      focusNextWindow(state.windows);
     },
     focusWindow: (state, action: PayloadAction<string>) => {
       bringToFront(state.windows, action.payload);
@@ -38,7 +56,7 @@ export const windowSlice = createSlice({
 
       if (win) {
         win.isMinimized = true;
-        win.isActive = false;
+        focusNextWindow(state.windows);
       }
     },
     toggleWindow: (state, action: PayloadAction<string>) => {
@@ -47,12 +65,12 @@ export const windowSlice = createSlice({
 
       const isMinimizing = target.isActive && !target.isMinimized;
 
-      target.isMinimized = isMinimizing;
-      target.isActive = !isMinimizing;
-
-      state.windows.forEach((win) => {
-        if (win.id !== action.payload) win.isActive = false;
-      });
+      if (isMinimizing) {
+        target.isMinimized = true;
+        focusNextWindow(state.windows);
+      } else {
+        bringToFront(state.windows, action.payload);
+      }
     }
   }
 });

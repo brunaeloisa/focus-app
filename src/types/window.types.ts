@@ -3,4 +3,5 @@ export interface AppWindow {
   title: string;
   isMinimized: boolean;
   isActive: boolean;
+  z?: number;
 }
