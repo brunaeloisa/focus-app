@@ -14,6 +14,7 @@ export function Desktop() {
         id,
         title,
         isMinimized: false,
+        isMaximized: false,
         isActive: true
       })
     );

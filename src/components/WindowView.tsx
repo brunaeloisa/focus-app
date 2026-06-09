@@ -9,6 +9,7 @@ import { useAppDispatch } from '../store/hooks';
 import {
   closeWindow,
   focusWindow,
+  maximizeWindow,
   minimizeWindow
 } from '../store/slices/windowSlice';
 
@@ -57,17 +58,29 @@ export function WindowView({ windowData, children }: WindowViewProps) {
     dispatch(closeWindow(windowData.id));
   }
 
+  function handleMaximize(e: React.MouseEvent) {
+    e.stopPropagation();
+    dispatch(maximizeWindow(windowData.id));
+  }
+
   return (
     <Draggable
       nodeRef={nodeRef}
       handle=".window-drag-handle"
       cancel="button"
       bounds={bounds}
-      positionOffset={{ x: '-50%', y: '-50%' }}
+      position={windowData.isMaximized ? { x: 0, y: 0 } : undefined}
+      positionOffset={
+        windowData.isMaximized ? { x: '0', y: '0' } : { x: '-50%', y: '-50%' }
+      }
       onStart={handleStart}
     >
       <div
-        className={`out-3d bg-base absolute top-1/2 left-1/2 min-h-32 min-w-64 p-0.5 ${windowData.isMinimized ? 'hidden' : ''}`}
+        className={`out-3d bg-base absolute p-0.5 ${
+          windowData.isMaximized
+            ? 'top-0 left-0 h-full w-full'
+            : 'top-1/2 left-1/2 min-h-32 min-w-64'
+        } ${windowData.isMinimized ? 'hidden' : ''}`}
         style={{ zIndex: windowData.z ?? 100 }}
         onClick={handleFocus}
         ref={nodeRef}
@@ -92,9 +105,10 @@ export function WindowView({ windowData, children }: WindowViewProps) {
 
             <Button3D
               className="flex h-6 w-6 items-center justify-center"
-              title="Maximizar"
+              title={windowData.isMaximized ? 'Restaurar' : 'Maximizar'}
+              onClick={handleMaximize}
             >
-              &#128470;
+              {windowData.isMaximized ? '\uD83D\uDDD7' : '\uD83D\uDDD6'}
             </Button3D>
 
             <Button3D

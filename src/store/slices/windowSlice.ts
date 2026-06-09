@@ -59,6 +59,14 @@ export const windowSlice = createSlice({
         focusNextWindow(state.windows);
       }
     },
+    maximizeWindow: (state, action: PayloadAction<string>) => {
+      const win = state.windows.find((win) => win.id === action.payload);
+
+      if (win) {
+        win.isMaximized = !win.isMaximized;
+        bringToFront(state.windows, action.payload);
+      }
+    },
     toggleWindow: (state, action: PayloadAction<string>) => {
       const target = state.windows.find((win) => win.id === action.payload);
       if (!target) return;
@@ -79,6 +87,7 @@ export const {
   createWindow,
   closeWindow,
   minimizeWindow,
+  maximizeWindow,
   focusWindow,
   toggleWindow
 } = windowSlice.actions;
