@@ -51,7 +51,7 @@ export function TaskBar() {
   return (
     <footer className="border-t-highlight bg-base h-taskbar flex w-full shrink-0 items-center justify-between gap-3 border-t-2 px-1 pb-px">
       <div className="flex min-w-0 flex-1 items-center gap-3">
-        <div ref={menuRef}>
+        <div ref={menuRef} className="relative flex items-center">
           <Button3D
             pressed={isMenuOpen}
             aria-expanded={isMenuOpen}
@@ -67,10 +67,14 @@ export function TaskBar() {
             <ul
               id="start-menu"
               role="menu"
-              className="bg-base out-3d absolute bottom-full left-1 mb-0.5 w-48 p-0.5"
+              className="bg-base out-3d absolute bottom-full left-0 z-900 mb-0.5 w-48 p-0.5"
             >
               {menuItems.map((item) => (
-                <li role="none" className="hover:bg-active hover:text-white">
+                <li
+                  key={item}
+                  role="none"
+                  className="hover:bg-active hover:text-white"
+                >
                   <button
                     role="menuitem"
                     type="button"
