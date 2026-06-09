@@ -21,7 +21,7 @@ export function Desktop() {
   }
 
   return (
-    <main className="bg-wallpaper pb-taskbar relative h-screen w-screen overflow-hidden p-5">
+    <main className="bg-wallpaper relative w-screen grow overflow-hidden p-5">
       <div className="flex w-40 flex-col gap-3">
         <Button3D onClick={() => openWindow('janela1', 'Nova Janela 1')}>
           Abrir Janela 1

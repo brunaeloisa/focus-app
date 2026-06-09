@@ -49,7 +49,7 @@ export function TaskBar() {
   }, [isMenuOpen]);
 
   return (
-    <footer className="border-t-highlight bg-base h-taskbar fixed bottom-0 flex w-full items-center justify-between gap-3 border-t-2 px-1 pb-px">
+    <footer className="border-t-highlight bg-base h-taskbar flex w-full shrink-0 items-center justify-between gap-3 border-t-2 px-1 pb-px">
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <div ref={menuRef}>
           <Button3D
