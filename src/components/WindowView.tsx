@@ -38,13 +38,17 @@ export function WindowView({ windowData, children }: WindowViewProps) {
 
     handleFocus();
 
+    const parent = data.node.parentElement;
+    if (!parent) return; 
+
     const rect = data.node.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
 
     setBounds({
-      left: -rect.left + data.x,
-      right: window.innerWidth - rect.right + data.x,
-      top: -rect.top + data.y,
-      bottom: window.innerHeight - rect.bottom + data.y
+      left: parentRect.left - rect.left + data.x,
+      right: parentRect.right - rect.right + data.x,
+      top: parentRect.top - rect.top + data.y,
+      bottom: parentRect.bottom - rect.bottom + data.y
     });
   }
 
@@ -69,6 +73,7 @@ export function WindowView({ windowData, children }: WindowViewProps) {
       handle=".window-drag-handle"
       cancel="button"
       bounds={bounds}
+      disabled={windowData.isMaximized}
       position={windowData.isMaximized ? { x: 0, y: 0 } : undefined}
       positionOffset={
         windowData.isMaximized ? { x: '0', y: '0' } : { x: '-50%', y: '-50%' }
