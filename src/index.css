@@ -32,3 +32,23 @@
   border-top-color: var(--color-shadow);
   box-shadow: inset 1px 1px 0 var(--color-midtone);
 }
+
+@utility selected-text {
+  background-color: var(--color-active);
+  outline: 2px dotted var(--color-midtone);
+  outline-offset: -2px;
+  
+}
+
+@utility selected-icon {
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-active);
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+  }
+}
