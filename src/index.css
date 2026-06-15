@@ -39,16 +39,3 @@
   outline-offset: -2px;
   
 }
-
-@utility selected-icon {
-  position: relative;
-  
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: var(--color-active);
-    opacity: 0.4;
-    mix-blend-mode: multiply;
-  }
-}
