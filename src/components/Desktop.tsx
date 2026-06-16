@@ -5,6 +5,7 @@ import { createWindow } from '../store/slices/windowSlice';
 import { Shortcut } from './Shortcut';
 import HelpIcon from '../assets/help.svg';
 import { useState } from 'react';
+import { SelectionFilter } from './SelectionFilter';
 
 const apps = [
   { id: 'ajuda', name: 'Ajuda', icon: HelpIcon },
@@ -33,6 +34,8 @@ export function Desktop() {
       className="bg-wallpaper relative w-screen grow overflow-hidden p-5"
       onClick={() => setSelectedApp(null)}
     >
+      <SelectionFilter />
+
       <div className="flex w-40 flex-col gap-4">
         {apps.map((app) => (
           <Shortcut
