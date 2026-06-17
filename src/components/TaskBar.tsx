@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button3D } from './Button3D';
 import { WindowSwitcher } from './WindowSwitcher';
+import { StartMenu } from './StartMenu';
 
 function getCurrentTime() {
   const now = new Date();
 
   return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 }
-
-const menuItems = ['Ajuda', 'Configurações', 'Suspender'];
 
 export function TaskBar() {
   const [time, setTime] = useState(getCurrentTime());
@@ -63,30 +62,7 @@ export function TaskBar() {
             Iniciar
           </Button3D>
 
-          {isMenuOpen && (
-            <ul
-              id="start-menu"
-              role="menu"
-              className="bg-base out-3d absolute bottom-full left-0 z-900 mb-0.5 w-48 p-0.5"
-            >
-              {menuItems.map((item) => (
-                <li
-                  key={item}
-                  role="none"
-                  className="hover:bg-active hover:text-white"
-                >
-                  <button
-                    role="menuitem"
-                    type="button"
-                    className="block w-full px-3 py-2 text-left"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          {isMenuOpen && <StartMenu onClose={() => setIsMenuOpen(false)} />}
         </div>
 
         <WindowSwitcher />
