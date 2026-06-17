@@ -12,6 +12,7 @@ import {
   maximizeWindow,
   minimizeWindow
 } from '../store/slices/windowSlice';
+import { PROGRAMS_DATA } from '../data/programs';
 
 interface WindowViewProps {
   windowData: AppWindow;
@@ -39,7 +40,7 @@ export function WindowView({ windowData, children }: WindowViewProps) {
     handleFocus();
 
     const parent = data.node.parentElement;
-    if (!parent) return; 
+    if (!parent) return;
 
     const rect = data.node.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
@@ -93,10 +94,17 @@ export function WindowView({ windowData, children }: WindowViewProps) {
         <header
           className={`window-drag-handle ${
             windowData.isActive ? 'bg-active' : 'bg-inactive'
-          } flex cursor-default items-center justify-between p-1`}
+          } flex cursor-default items-center justify-between gap-2 px-0.5 py-1`}
         >
-          <div className="ml-0.5 font-semibold text-white">
-            {windowData.title}
+          <div className="ml-0.5 flex items-center gap-1 overflow-hidden">
+            <img
+              src={PROGRAMS_DATA[windowData.id].icon}
+              alt=""
+              className="h-6 w-6"
+            />
+            <span className="truncate font-semibold text-white">
+              {windowData.title}
+            </span>
           </div>
 
           <div className="flex items-center gap-0.5">
