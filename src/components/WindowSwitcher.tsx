@@ -22,7 +22,7 @@ export function WindowSwitcher() {
         >
           <div className="flex w-full items-center gap-1 overflow-hidden">
             <img src={PROGRAMS_DATA[win.id].icon} alt="" className="w-5" />
-            <span className="truncate">{win.title}</span>
+            <span className="truncate">{PROGRAMS_DATA[win.id].name}</span>
           </div>
         </Button3D>
       ))}

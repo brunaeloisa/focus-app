@@ -103,7 +103,7 @@ export function WindowView({ windowData, children }: WindowViewProps) {
               className="h-6 w-6"
             />
             <span className="truncate font-semibold text-white">
-              {windowData.title}
+              {PROGRAMS_DATA[windowData.id].name}
             </span>
           </div>
 
