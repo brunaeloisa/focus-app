@@ -1,6 +1,9 @@
 import { PROGRAMS_DATA } from '../data/programs';
 import { MenuItem } from './MenuItem';
 import SuspendIcon from '../assets/suspend.svg';
+import useOpenWindow from '../hooks/useOpenWindow';
+import { useAppDispatch } from '../store/hooks';
+import { toggleSuspend } from '../store/slices/systemSlice';
 
 const menuItems = ['help', 'config'];
 
@@ -9,6 +12,9 @@ interface StartMenuProps {
 }
 
 export function StartMenu({ onClose }: StartMenuProps) {
+  const openWindow = useOpenWindow();
+  const dispatch = useAppDispatch();
+
   return (
     <ul
       id="start-menu"
@@ -20,7 +26,10 @@ export function StartMenu({ onClose }: StartMenuProps) {
           key={itemId}
           name={PROGRAMS_DATA[itemId].name}
           icon={PROGRAMS_DATA[itemId].icon}
-          handleClick={onClose}
+          handleClick={() => {
+            openWindow(itemId);
+            onClose();
+          }}
         />
       ))}
 
@@ -29,7 +38,14 @@ export function StartMenu({ onClose }: StartMenuProps) {
         className="border-b-highlight border-t-midtone border-t border-b"
       />
 
-      <MenuItem name={'Suspender'} icon={SuspendIcon} handleClick={onClose} />
+      <MenuItem
+        name={'Suspender'}
+        icon={SuspendIcon}
+        handleClick={() => {
+          onClose();
+          dispatch(toggleSuspend());
+        }}
+      />
     </ul>
   );
 }
