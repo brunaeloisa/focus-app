@@ -14,7 +14,7 @@ export function MenuItem({ icon, name, handleClick }: MenuItemProps) {
         onClick={handleClick}
       >
         <div className="flex items-center gap-2.5 overflow-hidden">
-          <img src={icon} alt="" className="w-8.5" />
+          <img src={icon} alt="" className="h-8 w-8" />
           <span>{name}</span>
         </div>
       </button>

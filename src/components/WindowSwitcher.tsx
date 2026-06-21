@@ -21,7 +21,7 @@ export function WindowSwitcher() {
           onClick={() => handleToggleWindow(win.id)}
         >
           <div className="flex w-full items-center gap-1 overflow-hidden">
-            <img src={PROGRAMS_DATA[win.id].icon} alt="" className="w-5" />
+            <img src={PROGRAMS_DATA[win.id].icon} alt="" className="h-5 w-5" />
             <span className="truncate">{PROGRAMS_DATA[win.id].name}</span>
           </div>
         </Button3D>

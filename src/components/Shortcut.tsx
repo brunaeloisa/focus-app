@@ -23,7 +23,7 @@ export function Shortcut({
       <img
         src={icon}
         alt={name}
-        className="block w-16"
+        className="h-16 w-16"
         style={{ filter: isSelected ? 'url(#selection-filter)' : 'none' }}
       />
 
