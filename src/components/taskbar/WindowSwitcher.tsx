@@ -1,7 +1,7 @@
-import { Button3D } from './Button3D';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { toggleWindow } from '../store/slices/windowSlice';
-import { PROGRAMS_DATA } from '../data/programs';
+import { Button3D } from '../ui/Button3D';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { toggleWindow } from '../../store/slices/windowSlice';
+import { PROGRAMS_DATA } from '../../data/programs';
 
 export function WindowSwitcher() {
   const windows = useAppSelector((state) => state.windows.windows);

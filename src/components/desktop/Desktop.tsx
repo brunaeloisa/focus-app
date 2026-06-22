@@ -1,11 +1,11 @@
 import { WindowView } from './WindowView';
-import { useAppSelector } from '../store/hooks';
-import type { AppWindow } from '../types/window.types';
+import { useAppSelector } from '../../store/hooks';
+import type { AppWindow } from '../../types/window.types';
 import { Shortcut } from './Shortcut';
 import { useState } from 'react';
 import { SelectionFilter } from './SelectionFilter';
-import { PROGRAMS_DATA } from '../data/programs';
-import useOpenWindow from '../hooks/useOpenWindow';
+import { PROGRAMS_DATA } from '../../data/programs';
+import useOpenWindow from '../../hooks/useOpenWindow';
 
 const apps = ['help'];
 

@@ -3,16 +3,16 @@ import Draggable, {
   type DraggableData,
   type DraggableEvent
 } from 'react-draggable';
-import { type AppWindow } from '../types/window.types';
-import { Button3D } from './Button3D';
-import { useAppDispatch } from '../store/hooks';
+import { type AppWindow } from '../../types/window.types';
+import { Button3D } from '../ui/Button3D';
+import { useAppDispatch } from '../../store/hooks';
 import {
   closeWindow,
   focusWindow,
   maximizeWindow,
   minimizeWindow
-} from '../store/slices/windowSlice';
-import { PROGRAMS_DATA } from '../data/programs';
+} from '../../store/slices/windowSlice';
+import { PROGRAMS_DATA } from '../../data/programs';
 
 interface WindowViewProps {
   windowData: AppWindow;

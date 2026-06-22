@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button3D } from './Button3D';
+import { Button3D } from '../ui/Button3D';
 import { WindowSwitcher } from './WindowSwitcher';
 import { StartMenu } from './StartMenu';
 

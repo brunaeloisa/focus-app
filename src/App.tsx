@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { Desktop } from './components/Desktop';
-import { TaskBar } from './components/TaskBar';
+import { Desktop } from './components/desktop/Desktop';
+import { TaskBar } from './components/taskbar/TaskBar';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { toggleSuspend } from './store/slices/systemSlice';
 

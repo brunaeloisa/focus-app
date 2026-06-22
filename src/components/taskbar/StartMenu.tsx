@@ -1,9 +1,9 @@
-import { PROGRAMS_DATA } from '../data/programs';
+import { PROGRAMS_DATA } from '../../data/programs';
 import { MenuItem } from './MenuItem';
-import SuspendIcon from '../assets/suspend.svg';
-import useOpenWindow from '../hooks/useOpenWindow';
-import { useAppDispatch } from '../store/hooks';
-import { toggleSuspend } from '../store/slices/systemSlice';
+import SuspendIcon from '../../assets/suspend.svg';
+import useOpenWindow from '../../hooks/useOpenWindow';
+import { useAppDispatch } from '../../store/hooks';
+import { toggleSuspend } from '../../store/slices/systemSlice';
 
 const menuItems = ['help', 'config'];
 
