@@ -28,7 +28,8 @@ function App() {
   return (
     <>
       <div
-        className={`flex h-screen w-screen flex-col overflow-hidden select-none ${isSuspended ? 'pointer-events-none' : ''}`}
+        data-theme="dark"
+        className={`text-window-text flex h-screen w-screen flex-col overflow-hidden select-none ${isSuspended ? 'pointer-events-none' : ''}`}
       >
         <Desktop />
         <TaskBar />

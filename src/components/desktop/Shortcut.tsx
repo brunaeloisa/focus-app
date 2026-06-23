@@ -28,7 +28,7 @@ export function Shortcut({
       />
 
       <span
-        className={`px-1 py-px text-center leading-tight text-white ${isSelected ? 'selected-text' : ''}`}
+        className={`px-1 py-px text-center leading-tight ${isSelected ? 'selected-text' : 'text-desktop-text'}`}
       >
         {name}
       </span>

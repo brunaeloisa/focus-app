@@ -10,12 +10,101 @@
   --color-wallpaper: #008080;
   --color-active: #000080;
   --color-inactive: #808080;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #ffffff;
+}
+
+[data-theme='pastel'] {
+  --color-base: #ecd2d8;
+  --color-shadow: #5d3641;
+  --color-highlight: #ffffff;
+  --color-midtone: #e3bbc2;
+  --color-wallpaper: #a7b6d8;
+  --color-active: #cb6b71;
+  --color-inactive: #d4b3b3;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #363636;
+}
+
+[data-theme='purple'] {
+  --color-base: #baa7d4;
+  --color-shadow: #331f45;
+  --color-highlight: #fdfaff;
+  --color-midtone: #825aa9;
+  --color-wallpaper: #4c4d7b;
+  --color-active: #4c2573;
+  --color-inactive: #9d7bb8;
+  --color-window-text: #2b1a3b;
+}
+
+[data-theme='olive'] {
+  --color-base: #e1dfae;
+  --color-shadow: #2b2c04;
+  --color-highlight: #ffffff;
+  --color-midtone: #808052;
+  --color-wallpaper: #444428;
+  --color-active: #66774d;
+  --color-inactive: #aeb87b;
+  --color-window-text: var(--color-shadow);
+}
+
+[data-theme='dark'] {
+  --color-base: #383838;
+  --color-shadow: #1e1e1e;
+  --color-midtone: #282828;
+  --color-wallpaper: #372a3d;
+  --color-active: #1b0e27;
+  --color-inactive: #4d4d4d;
+  --color-window-text: #f3f3f3;
+  --color-highlight: #646464;
+}
+
+[data-theme='blue'] {
+  --color-base: #d6cabe;
+  --color-shadow: #323232;
+  --color-midtone: #868686;
+  --color-wallpaper: #668597;
+  --color-active: #407799;
+  --color-inactive: #93a2ab;
+  --color-window-text: var(--color-shadow);
+}
+
+[data-theme='coffee'] {
+  --color-base: #b59a82;
+  --color-shadow: #4c3027;
+  --color-highlight: #fff5e8;
+  --color-midtone: #865d50;
+  --color-wallpaper: #4a2f20;
+  --color-active: #7b361e;
+  --color-inactive: #8c6c5f;
+  --color-window-text: #3a241d;
+}
+
+[data-theme='chocolate'] {
+  --color-base: #452a2d;
+  --color-wallpaper: #271212;
+  --color-highlight: #8a5c5d;
+  --color-shadow: #301111;
+  --color-midtone: #491c1c;
+  --color-active: #590000;
+  --color-inactive: #451a21;
+  --color-window-text: #ffffff;
+}
+
+[data-theme='watermelon'] {
+  --color-base: #d0b0b6;
+  --color-shadow: #522e3f;
+  --color-midtone: #ab6a8e;
+  --color-wallpaper: #82af92;
+  --color-active: #8c055e;
+  --color-inactive: #956888;
+  --color-window-text: #411f2f;
+  --color-desktop-text: #1e1b1b;
 }
 
 @layer base {
-  body {
+  html {
     font-family: var(--font-mono);
-    color: var(--color-shadow);
   }
 }
 
@@ -34,8 +123,8 @@
 }
 
 @utility selected-text {
+  color: #ffffff;
   background-color: var(--color-active);
   outline: 2px dotted var(--color-midtone);
   outline-offset: -2px;
-  
 }
