@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 import { toggleSuspend } from './store/slices/systemSlice';
 
 function App() {
-  const isSuspended = useAppSelector((state) => state.system.isSuspended);
+  const { theme, isSuspended } = useAppSelector((state) => state.system);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <div
-        data-theme="dark"
+        data-theme={theme}
         className={`text-window-text flex h-screen w-screen flex-col overflow-hidden select-none ${isSuspended ? 'pointer-events-none' : ''}`}
       >
         <Desktop />

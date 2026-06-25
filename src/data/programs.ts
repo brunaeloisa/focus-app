@@ -1,5 +1,6 @@
 import HelpIcon from '../assets/help.svg';
-import ConfigIcon from '../assets/config.svg';
+import SettingsIcon from '../assets/settings.svg';
+import { Settings } from '../programs/Settings';
 
 interface ProgramData {
   name: string;
@@ -12,8 +13,9 @@ export const PROGRAMS_DATA: Record<string, ProgramData> = {
     name: 'Ajuda',
     icon: HelpIcon
   },
-  config: {
+  settings: {
     name: 'Configurações',
-    icon: ConfigIcon
+    icon: SettingsIcon,
+    component: Settings
   }
 };

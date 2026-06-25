@@ -46,9 +46,7 @@ export function Desktop() {
       </div>
 
       {windows.map((win: AppWindow) => (
-        <WindowView windowData={win} key={win.id}>
-          Conteúdo da Janela.
-        </WindowView>
+        <WindowView windowData={win} key={win.id} />
       ))}
     </main>
   );

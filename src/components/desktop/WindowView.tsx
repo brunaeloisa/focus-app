@@ -16,12 +16,14 @@ import { PROGRAMS_DATA } from '../../data/programs';
 
 interface WindowViewProps {
   windowData: AppWindow;
-  children: React.ReactNode;
 }
 
-export function WindowView({ windowData, children }: WindowViewProps) {
+export function WindowView({ windowData }: WindowViewProps) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
+
+  const program = PROGRAMS_DATA[windowData.id];
+  const ProgramComponent = program.component;
 
   const [bounds, setBounds] = useState({
     left: 0,
@@ -97,13 +99,9 @@ export function WindowView({ windowData, children }: WindowViewProps) {
           } flex cursor-default items-center justify-between gap-2 px-0.5 py-1`}
         >
           <div className="ml-0.5 flex items-center gap-1 overflow-hidden">
-            <img
-              src={PROGRAMS_DATA[windowData.id].icon}
-              alt=""
-              className="h-6 w-6"
-            />
+            <img src={program.icon} alt="" className="h-6 w-6" />
             <span className="truncate font-semibold text-white">
-              {PROGRAMS_DATA[windowData.id].name}
+              {program.name}
             </span>
           </div>
 
@@ -134,7 +132,9 @@ export function WindowView({ windowData, children }: WindowViewProps) {
           </div>
         </header>
 
-        <div className="p-0.5">{children}</div>
+        <div className="p-0.5">
+          {ProgramComponent ? <ProgramComponent /> : 'Conteúdo da Janela.'}
+        </div>
       </div>
     </Draggable>
   );

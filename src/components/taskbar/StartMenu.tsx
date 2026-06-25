@@ -5,7 +5,7 @@ import useOpenWindow from '../../hooks/useOpenWindow';
 import { useAppDispatch } from '../../store/hooks';
 import { toggleSuspend } from '../../store/slices/systemSlice';
 
-const menuItems = ['help', 'config'];
+const menuItems = ['help', 'settings'];
 
 interface StartMenuProps {
   onClose: () => void;
