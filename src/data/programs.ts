@@ -1,6 +1,6 @@
 import HelpIcon from '../assets/help.svg';
 import SettingsIcon from '../assets/settings.svg';
-import { Settings } from '../programs/Settings';
+import { Settings } from '../components/programs/settings';
 
 interface ProgramData {
   name: string;

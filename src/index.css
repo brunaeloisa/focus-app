@@ -14,6 +14,18 @@
   --color-desktop-text: #ffffff;
 }
 
+[data-theme='win95'] {
+  --color-base: #c0c0c0;
+  --color-shadow: #414141;
+  --color-highlight: #f3f3f3;
+  --color-midtone: #8b8b8b;
+  --color-wallpaper: #008080;
+  --color-active: #000080;
+  --color-inactive: #808080;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #ffffff;
+}
+
 [data-theme='pastel'] {
   --color-base: #ecd2d8;
   --color-shadow: #5d3641;
