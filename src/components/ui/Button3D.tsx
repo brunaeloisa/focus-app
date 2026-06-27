@@ -13,11 +13,11 @@ export function Button3D({
   return (
     <button
       {...(pressed !== undefined && { 'aria-pressed': pressed })}
-      className={`group bg-base ${!pressed ? 'out-3d active:in-3d' : 'in-3d'} ${className}`}
+      className={`group bg-base ${!pressed ? 'out-3d active:in-3d' : 'in-3d'} ${className} disabled:pointer-events-none`}
       {...props}
     >
       <div
-        className={`truncate ${!pressed ? 'group-active:translate-px' : 'translate-px'}`}
+        className={`truncate group-disabled:opacity-50 ${!pressed ? 'group-active:translate-px' : 'translate-px'}`}
       >
         {children}
       </div>

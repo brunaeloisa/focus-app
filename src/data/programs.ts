@@ -5,17 +5,20 @@ import { Settings } from '../components/programs/settings';
 interface ProgramData {
   name: string;
   icon: string;
+  allowFullscreen: boolean;
   component?: React.ComponentType;
 }
 
 export const PROGRAMS_DATA: Record<string, ProgramData> = {
   help: {
     name: 'Ajuda',
-    icon: HelpIcon
+    icon: HelpIcon,
+    allowFullscreen: true
   },
   settings: {
     name: 'Configurações',
     icon: SettingsIcon,
-    component: Settings
+    component: Settings,
+    allowFullscreen: false
   }
 };

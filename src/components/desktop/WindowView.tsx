@@ -118,6 +118,7 @@ export function WindowView({ windowData }: WindowViewProps) {
               className="flex h-6 w-6 items-center justify-center"
               title={windowData.isMaximized ? 'Restaurar' : 'Maximizar'}
               onClick={handleMaximize}
+              disabled={!program.allowFullscreen}
             >
               {windowData.isMaximized ? '\uD83D\uDDD7' : '\uD83D\uDDD6'}
             </Button3D>
