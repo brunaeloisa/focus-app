@@ -12,6 +12,7 @@
   --color-inactive: #808080;
   --color-window-text: var(--color-shadow);
   --color-desktop-text: #ffffff;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='win95'] {
@@ -24,18 +25,20 @@
   --color-inactive: #808080;
   --color-window-text: var(--color-shadow);
   --color-desktop-text: #ffffff;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='pastel'] {
   --color-base: #ecd2d8;
   --color-shadow: #5d3641;
   --color-highlight: #ffffff;
-  --color-midtone: #e3bbc2;
+  --color-midtone: #d2939e;
   --color-wallpaper: #a7b6d8;
   --color-active: #cb6b71;
   --color-inactive: #d4b3b3;
   --color-window-text: var(--color-shadow);
   --color-desktop-text: #363636;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='purple'] {
@@ -47,6 +50,7 @@
   --color-active: #4c2573;
   --color-inactive: #9d7bb8;
   --color-window-text: #2b1a3b;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='olive'] {
@@ -58,38 +62,42 @@
   --color-active: #66774d;
   --color-inactive: #aeb87b;
   --color-window-text: var(--color-shadow);
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='dark'] {
   --color-base: #383838;
-  --color-shadow: #1e1e1e;
+  --color-shadow: #181818;
   --color-midtone: #282828;
   --color-wallpaper: #372a3d;
   --color-active: #1b0e27;
   --color-inactive: #4d4d4d;
   --color-window-text: #f3f3f3;
   --color-highlight: #646464;
+  --color-inner-surface: var(--color-midtone);
 }
 
 [data-theme='blue'] {
   --color-base: #d6cabe;
-  --color-shadow: #323232;
+  --color-shadow: #31383d;
   --color-midtone: #868686;
   --color-wallpaper: #668597;
   --color-active: #407799;
   --color-inactive: #93a2ab;
-  --color-window-text: var(--color-shadow);
+  --color-window-text: #333536;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='coffee'] {
   --color-base: #b59a82;
-  --color-shadow: #4c3027;
+  --color-shadow: #3a2219;
   --color-highlight: #fff5e8;
   --color-midtone: #865d50;
-  --color-wallpaper: #4a2f20;
+  --color-wallpaper: #492f22;
   --color-active: #7b361e;
   --color-inactive: #8c6c5f;
   --color-window-text: #3a241d;
+  --color-inner-surface: var(--color-highlight);
 }
 
 [data-theme='chocolate'] {
@@ -101,6 +109,7 @@
   --color-active: #590000;
   --color-inactive: #451a21;
   --color-window-text: #ffffff;
+  --color-inner-surface: var(--color-midtone);
 }
 
 [data-theme='watermelon'] {
@@ -112,6 +121,7 @@
   --color-inactive: #956888;
   --color-window-text: #411f2f;
   --color-desktop-text: #1e1b1b;
+  --color-inner-surface: var(--color-highlight);
 }
 
 @layer base {
@@ -139,4 +149,27 @@
   background-color: var(--color-active);
   outline: 2px dotted var(--color-midtone);
   outline-offset: -2px;
+}
+
+@utility field-3d {
+  background-color: var(--color-inner-surface);
+  padding: 2px;
+  border: 2px solid var(--color-midtone);
+  border-right-color: var(--color-highlight);
+  border-bottom-color: var(--color-highlight);
+
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-shadow),
+    inset -2px -2px 0 0 var(--color-base);
+}
+
+@utility select-btn {
+  background-color: var(--color-base);
+  border: 2px solid var(--color-shadow);
+  border-left: none;
+
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-base),
+    inset -2px -2px 0 0 var(--color-midtone),
+    inset 4px 4px 0 0 var(--color-highlight);
 }
