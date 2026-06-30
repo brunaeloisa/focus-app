@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Draggable, {
   type DraggableData,
   type DraggableEvent
@@ -13,6 +13,7 @@ import {
   minimizeWindow
 } from '../../store/slices/windowSlice';
 import { PROGRAMS_DATA } from '../../data/programs';
+import { useAudio } from '../../hooks/useAudio';
 
 interface WindowViewProps {
   windowData: AppWindow;
@@ -24,6 +25,12 @@ export function WindowView({ windowData }: WindowViewProps) {
 
   const program = PROGRAMS_DATA[windowData.id];
   const ProgramComponent = program.component;
+
+  const { play: playOpenSound } = useAudio();
+
+  useEffect(() => {
+    playOpenSound();
+  }, [playOpenSound]);
 
   const [bounds, setBounds] = useState({
     left: 0,

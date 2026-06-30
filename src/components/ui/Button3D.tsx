@@ -8,6 +8,7 @@ export function Button3D({
   pressed,
   children,
   className = '',
+  onClick,
   ...props
 }: Button3DProps) {
   return (
@@ -15,6 +16,7 @@ export function Button3D({
       {...(pressed !== undefined && { 'aria-pressed': pressed })}
       className={`group bg-base ${!pressed ? 'out-3d active:in-3d' : 'in-3d'} ${className} disabled:pointer-events-none`}
       {...props}
+      onClick={onClick}
     >
       <div
         className={`truncate group-disabled:opacity-50 ${!pressed ? 'group-active:translate-px' : 'translate-px'}`}
