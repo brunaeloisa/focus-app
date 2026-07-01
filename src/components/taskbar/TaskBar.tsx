@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Button3D } from '../ui/Button3D';
 import { WindowSwitcher } from './WindowSwitcher';
 import { StartMenu } from './StartMenu';
+import SoundIcon from '../../assets/sound.svg';
+import VolumeControl from './VolumeControl';
 
 function getCurrentTime() {
   const now = new Date();
@@ -12,7 +14,9 @@ function getCurrentTime() {
 export function TaskBar() {
   const [time, setTime] = useState(getCurrentTime());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVolumeOpen, setIsVolumeOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const soundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let timeoutId: number;
@@ -33,19 +37,28 @@ export function TaskBar() {
   }, []);
 
   useEffect(() => {
-    const handleClickOutsideMenu = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+
+      if (isMenuOpen && menuRef.current && !menuRef.current.contains(target)) {
         setIsMenuOpen(false);
+      }
+
+      if (
+        isVolumeOpen &&
+        soundRef.current &&
+        !soundRef.current.contains(target)
+      ) {
+        setIsVolumeOpen(false);
       }
     };
 
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutsideMenu);
+    if (isMenuOpen || isVolumeOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
     }
 
-    return () =>
-      document.removeEventListener('mousedown', handleClickOutsideMenu);
-  }, [isMenuOpen]);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen, isVolumeOpen]);
 
   return (
     <footer className="border-t-highlight bg-base h-taskbar flex w-full shrink-0 items-center justify-between gap-3 border-t-2 px-1 pb-px">
@@ -68,8 +81,25 @@ export function TaskBar() {
         <WindowSwitcher />
       </div>
 
-      <div className="border-midtone border-r-highlight border-b-highlight border-2 px-2 py-0.5">
-        {time}
+      <div
+        ref={soundRef}
+        className="border-midtone border-r-highlight border-b-highlight relative flex border-2 py-0.5 pr-1"
+      >
+        <button
+          type="button"
+          aria-label="Volume"
+          aria-expanded={isVolumeOpen}
+          aria-haspopup="dialog"
+          aria-controls="volume-popup"
+          onClick={() => setIsVolumeOpen(!isVolumeOpen)}
+          className="pr-1 pl-1.5"
+        >
+          <img src={SoundIcon} width={20} aria-hidden="true" />
+        </button>
+
+        {isVolumeOpen && <VolumeControl />}
+
+        <div className="w-10 text-center">{time}</div>
       </div>
     </footer>
   );
