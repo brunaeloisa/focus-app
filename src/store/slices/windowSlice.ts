@@ -38,10 +38,7 @@ export const windowSlice = createSlice({
   reducers: {
     createWindow: (state, action: PayloadAction<AppWindow>) => {
       const newWindow = action.payload;
-      const exists = state.windows.some((win) => win.id === newWindow.id);
-
-      if (!exists) state.windows.push(newWindow);
-
+      state.windows.push(newWindow);
       bringToFront(state.windows, newWindow.id);
     },
     closeWindow: (state, action: PayloadAction<string>) => {

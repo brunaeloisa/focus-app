@@ -1,5 +1,6 @@
+import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { createWindow } from '../store/slices/windowSlice';
+import { createWindow, focusWindow } from '../store/slices/windowSlice';
 import { useSoundEffect } from './useSoundEffect';
 
 export default function useOpenWindow() {
@@ -7,19 +8,28 @@ export default function useOpenWindow() {
   const windows = useAppSelector((state) => state.windows.windows);
   const { play: playOpenSound } = useSoundEffect();
 
-  function openWindow(id: string) {
-    const exists = windows.some((w) => w.id === id);
-    if (!exists) playOpenSound();
+  const openWindow = useCallback(
+    (id: string) => {
+      const exists = windows.some((w) => w.id === id);
 
-    dispatch(
-      createWindow({
-        id,
-        isMinimized: false,
-        isMaximized: false,
-        isActive: true
-      })
-    );
-  }
+      if (exists) {
+        dispatch(focusWindow(id));
+        return;
+      }
+
+      playOpenSound();
+
+      dispatch(
+        createWindow({
+          id,
+          isMinimized: false,
+          isMaximized: false,
+          isActive: true
+        })
+      );
+    },
+    [dispatch, playOpenSound, windows]
+  );
 
   return openWindow;
 }
