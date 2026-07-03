@@ -18,6 +18,7 @@ export function WindowSwitcher() {
           key={win.id}
           className="w-48 min-w-8 shrink px-1 py-0.5 text-left"
           pressed={win.isActive}
+          aria-pressed={win.isActive}
           onClick={() => handleToggleWindow(win.id)}
         >
           <div className="flex w-full items-center gap-1 overflow-hidden">

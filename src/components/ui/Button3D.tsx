@@ -13,7 +13,6 @@ export function Button3D({
 }: Button3DProps) {
   return (
     <button
-      {...(pressed !== undefined && { 'aria-pressed': pressed })}
       className={`group bg-base ${!pressed ? 'out-3d active:in-3d' : 'in-3d'} ${className} disabled:pointer-events-none`}
       {...props}
       onClick={onClick}
