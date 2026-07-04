@@ -1,0 +1,53 @@
+interface ThemePreviewProps {
+  theme: string;
+}
+
+export function ThemePreview({ theme }: ThemePreviewProps) {
+  return (
+    <svg
+      width="220"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+      shapeRendering="crispEdges"
+      data-theme={theme}
+    >
+      <metadata>
+        Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
+      </metadata>
+      <path
+        stroke="#626262"
+        d="M7 2h28M6 3h1M34 3h1M5 4h1M33 4h2M4 5h1M32 5h3M3 6h1M32 6h3M3 7h1M6 7h24M32 7h3M3 8h1M32 8h3M3 9h1M32 9h3M3 10h1M32 10h3M3 11h1M32 11h3M3 12h1M32 12h3M3 13h1M32 13h3M3 14h1M32 14h3M3 15h1M32 15h3M3 16h1M32 16h3M3 17h1M32 17h3M3 18h1M32 18h3M3 19h1M32 19h3M3 20h1M32 20h3M3 21h1M32 21h3M3 22h1M32 22h3M3 23h1M32 23h3M3 24h1M32 24h3M3 25h1M32 25h3M3 26h1M32 26h3M3 27h1M32 27h2M3 28h30M14 30h6M12 31h4M21 31h3M10 32h2M22 32h4M9 33h1M23 33h5M9 34h1M24 34h5M24 35h3"
+      />
+      <path
+        stroke="#b6b6b6"
+        d="M7 3h26M6 4h26M5 6h27M5 7h1M31 7h1M5 8h1M31 8h1M5 9h1M31 9h1M5 10h1M31 10h1M5 11h1M31 11h1M5 12h1M31 12h1M5 13h1M31 13h1M5 14h1M31 14h1M5 15h1M31 15h1M5 16h1M31 16h1M5 17h1M31 17h1M5 18h1M31 18h1M5 19h1M31 19h1M5 20h1M31 20h1M5 21h1M31 21h1M5 22h1M31 22h1M5 23h1M31 23h1M5 24h1M31 24h1M5 25h1M31 25h1M5 26h1M31 26h1M5 27h27M16 31h5M15 32h7M13 33h10M14 34h10M23 35h1"
+      />
+      <path
+        stroke="#ffffff"
+        d="M33 3h1M32 4h1M5 5h27M4 6h1M4 7h1M30 7h1M4 8h1M30 8h1M4 9h1M30 9h1M4 10h1M30 10h1M4 11h1M30 11h1M4 12h1M30 12h1M4 13h1M30 13h1M4 14h1M30 14h1M4 15h1M30 15h1M4 16h1M30 16h1M4 17h1M30 17h1M4 18h1M30 18h1M4 19h1M30 19h1M4 20h1M30 20h1M4 21h1M30 21h1M4 22h1M30 22h1M4 23h1M30 23h1M4 24h1M30 24h1M4 25h1M30 25h1M4 26h1M6 26h25M4 27h1M12 32h3M10 33h3M10 34h4M12 35h11"
+      />
+      <path
+        stroke="#000000"
+        d="M35 3h1M35 4h1M35 5h1M35 6h1M35 7h1M6 8h24M35 8h1M6 9h1M29 9h1M35 9h1M6 10h1M29 10h1M35 10h1M6 11h1M29 11h1M35 11h1M6 12h1M29 12h1M35 12h1M6 13h1M29 13h1M35 13h1M6 14h1M29 14h1M35 14h1M6 15h1M29 15h1M35 15h1M6 16h1M29 16h1M35 16h1M6 17h1M29 17h1M35 17h1M6 18h1M29 18h1M35 18h1M6 19h1M29 19h1M35 19h1M6 20h1M29 20h1M35 20h1M6 21h1M29 21h1M35 21h1M6 22h1M29 22h1M35 22h1M6 23h1M29 23h1M35 23h1M6 24h1M29 24h1M35 24h1M6 25h24M35 25h1M35 26h1M34 27h1M33 28h1M4 29h29M20 30h5M24 31h3M26 32h3M28 33h2M29 34h1M10 35h2M27 35h2M12 36h15"
+      />
+      <path
+        stroke="var(--color-wallpaper)"
+        d="M7 9h22M7 10h22M7 11h22M7 12h22M7 13h5M19 13h10M7 14h5M19 14h10M7 15h5M19 15h10M7 16h5M23 16h6M7 17h5M23 17h6M7 18h9M23 18h6M7 19h9M23 19h6M7 20h9M23 20h6M7 21h22M7 22h22M7 23h22"
+      />
+      <path stroke="var(--color-inactive)" d="M12 13h6" />
+      <path
+        stroke="var(--color-shadow)"
+        d="M18 13h1M18 14h1M18 15h1M22 16h1M12 17h4M22 17h1M22 18h1M22 19h1M16 20h7"
+      />
+      <path
+        stroke="var(--color-highlight)"
+        d="M12 14h1M12 15h1M12 16h1M16 17h1M16 18h1M16 19h1"
+      />
+      <path
+        stroke="var(--color-base)"
+        d="M13 14h5M13 15h5M13 16h3M17 17h5M17 18h5M17 19h5M7 24h22"
+      />
+      <path stroke="var(--color-active)" d="M16 16h6" />
+    </svg>
+  );
+}

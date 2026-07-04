@@ -1,1 +1,228 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-mono: 'W95FA', 'Microsoft Sans Serif', 'Tahoma', monospace;
+  --spacing-taskbar: 40px;
+  --color-base: #c0c0c0;
+  --color-shadow: #414141;
+  --color-highlight: #f3f3f3;
+  --color-midtone: #8b8b8b;
+  --color-wallpaper: #008080;
+  --color-active: #000080;
+  --color-inactive: #808080;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #ffffff;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='win95'] {
+  --color-base: #c0c0c0;
+  --color-shadow: #414141;
+  --color-highlight: #f3f3f3;
+  --color-midtone: #8b8b8b;
+  --color-wallpaper: #008080;
+  --color-active: #000080;
+  --color-inactive: #808080;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #ffffff;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='pastel'] {
+  --color-base: #ecd2d8;
+  --color-shadow: #5d3641;
+  --color-highlight: #ffffff;
+  --color-midtone: #d2939e;
+  --color-wallpaper: #a7b6d8;
+  --color-active: #cb6b71;
+  --color-inactive: #d4b3b3;
+  --color-window-text: var(--color-shadow);
+  --color-desktop-text: #363636;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='purple'] {
+  --color-base: #baa7d4;
+  --color-shadow: #331f45;
+  --color-highlight: #fdfaff;
+  --color-midtone: #825aa9;
+  --color-wallpaper: #4c4d7b;
+  --color-active: #4c2573;
+  --color-inactive: #9d7bb8;
+  --color-window-text: #2b1a3b;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='olive'] {
+  --color-base: #e1dfae;
+  --color-shadow: #2b2c04;
+  --color-highlight: #ffffff;
+  --color-midtone: #808052;
+  --color-wallpaper: #444428;
+  --color-active: #66774d;
+  --color-inactive: #aeb87b;
+  --color-window-text: var(--color-shadow);
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='dark'] {
+  --color-base: #383838;
+  --color-shadow: #181818;
+  --color-midtone: #282828;
+  --color-wallpaper: #372a3d;
+  --color-active: #1b0e27;
+  --color-inactive: #4d4d4d;
+  --color-window-text: #f3f3f3;
+  --color-highlight: #646464;
+  --color-inner-surface: var(--color-midtone);
+}
+
+[data-theme='blue'] {
+  --color-base: #d6cabe;
+  --color-shadow: #31383d;
+  --color-midtone: #868686;
+  --color-wallpaper: #668597;
+  --color-active: #407799;
+  --color-inactive: #93a2ab;
+  --color-window-text: #333536;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='coffee'] {
+  --color-base: #b59a82;
+  --color-shadow: #3a2219;
+  --color-highlight: #fff5e8;
+  --color-midtone: #865d50;
+  --color-wallpaper: #492f22;
+  --color-active: #7b361e;
+  --color-inactive: #8c6c5f;
+  --color-window-text: #3a241d;
+  --color-inner-surface: var(--color-highlight);
+}
+
+[data-theme='chocolate'] {
+  --color-base: #452a2d;
+  --color-wallpaper: #271212;
+  --color-highlight: #8a5c5d;
+  --color-shadow: #301111;
+  --color-midtone: #491c1c;
+  --color-active: #590000;
+  --color-inactive: #451a21;
+  --color-window-text: #ffffff;
+  --color-inner-surface: var(--color-midtone);
+}
+
+[data-theme='watermelon'] {
+  --color-base: #d0b0b6;
+  --color-shadow: #522e3f;
+  --color-midtone: #ab6a8e;
+  --color-wallpaper: #82af92;
+  --color-active: #8c055e;
+  --color-inactive: #956888;
+  --color-window-text: #411f2f;
+  --color-desktop-text: #1e1b1b;
+  --color-inner-surface: var(--color-highlight);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-mono);
+  }
+}
+
+@utility out-3d {
+  border: 2px solid var(--color-highlight);
+  border-right-color: var(--color-shadow);
+  border-bottom-color: var(--color-shadow);
+  box-shadow: inset -1px -1px 0 var(--color-midtone);
+}
+
+@utility in-3d {
+  border: 2px solid var(--color-highlight);
+  border-left-color: var(--color-shadow);
+  border-top-color: var(--color-shadow);
+  box-shadow: inset 1px 1px 0 var(--color-midtone);
+}
+
+@utility selected-text {
+  color: #ffffff;
+  background-color: var(--color-active);
+  outline: 2px dotted var(--color-midtone);
+  outline-offset: -2px;
+}
+
+@utility field-3d {
+  background-color: var(--color-inner-surface);
+  padding: 2px;
+  border: 2px solid var(--color-midtone);
+  border-right-color: var(--color-highlight);
+  border-bottom-color: var(--color-highlight);
+
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-shadow),
+    inset -2px -2px 0 0 var(--color-base);
+}
+
+@utility select-btn {
+  background-color: var(--color-base);
+  border: 2px solid var(--color-shadow);
+  border-left: none;
+
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-base),
+    inset -2px -2px 0 0 var(--color-midtone),
+    inset 4px 4px 0 0 var(--color-highlight);
+}
+
+.custom-slider {
+  writing-mode: vertical-lr;
+  -webkit-writing-mode: vertical-lr;
+  width: 28px;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    border-radius: 0;
+    height: 14px;
+    width: 28px;
+    background-color: var(--color-base);
+    border: 2px solid;
+    border-color: var(--color-shadow) var(--color-highlight)
+      var(--color-highlight) var(--color-shadow);
+    box-shadow: inset 1px 1px 0px var(--color-midtone);
+    position: relative;
+    left: 1px;
+    transform: translateX(-50%);
+  }
+
+  &::-moz-range-thumb {
+    border-radius: 0;
+    height: 14px;
+    width: 28px;
+    background-color: var(--color-base);
+    border: 2px solid;
+    border-color: var(--color-shadow) var(--color-highlight)
+      var(--color-highlight) var(--color-shadow);
+    box-shadow: inset 1px 1px 0px var(--color-midtone);
+    box-sizing: border-box !important;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 7px;
+    background-color: var(--color-shadow);
+    border: 2px solid;
+    border-color: var(--color-highlight) var(--color-midtone)
+      var(--color-midtone) var(--color-highlight);
+    box-shadow: inset 1px 1px 0 0 var(--color-base);
+  }
+
+  &::-moz-range-track {
+    box-sizing: border-box !important;
+    width: 7px;
+    background-color: var(--color-shadow);
+    border: 2px solid;
+    border-color: var(--color-highlight) var(--color-midtone)
+      var(--color-midtone) var(--color-highlight);
+    box-shadow: inset 1px 1px 0 0 var(--color-base);
+  }
+}
