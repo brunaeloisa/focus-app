@@ -18,6 +18,19 @@ interface WindowViewProps {
   windowData: AppWindow;
 }
 
+const renderIcon = (pathData: string, strokeWidth = 1) => (
+  <svg
+    xmlns="http://w3.org"
+    viewBox="0 0 16 16"
+    width="16"
+    height="16"
+    stroke="currentColor"
+    strokeWidth={strokeWidth}
+  >
+    <path fill="none" d={pathData} />
+  </svg>
+);
+
 export function WindowView({ windowData }: WindowViewProps) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -111,7 +124,7 @@ export function WindowView({ windowData }: WindowViewProps) {
               title="Minimizar"
               onClick={handleMinimize}
             >
-              &#128469;
+              {renderIcon('M3 12h10M3 13h10')}
             </Button3D>
 
             <Button3D
@@ -120,7 +133,11 @@ export function WindowView({ windowData }: WindowViewProps) {
               onClick={handleMaximize}
               disabled={!program.allowFullscreen}
             >
-              {windowData.isMaximized ? '\uD83D\uDDD7' : '\uD83D\uDDD6'}
+              {renderIcon(
+                windowData.isMaximized
+                  ? 'M5 3h9M5 4h9M5 5h1M13 5h1M5 6h1M13 6h1M2 7h9M13 7h1M2 8h9M13 8h1M2 9h1M10 9h4M2 10h1M10 10h1M2 11h1M10 11h1M2 12h1M10 12h1M2 13h9'
+                  : 'M2 3h12M2 4h12M2 5h12M2 6h1M13 6h1M2 7h1M13 7h1M2 8h1M13 8h1M2 9h1M13 9h1M2 10h1M13 10h1M2 11h1M13 11h1M2 12h1M13 12h1M2 13h12'
+              )}
             </Button3D>
 
             <Button3D
@@ -128,7 +145,7 @@ export function WindowView({ windowData }: WindowViewProps) {
               title="Fechar"
               onClick={handleClose}
             >
-              &#10005;
+              {renderIcon('M3 3L13 13M13 3L3 13', 1.4)}
             </Button3D>
           </div>
         </header>
