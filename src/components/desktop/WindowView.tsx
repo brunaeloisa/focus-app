@@ -104,7 +104,7 @@ export function WindowView({ windowData }: WindowViewProps) {
         className={`out-3d bg-base absolute p-0.5 ${
           windowData.isMaximized
             ? 'top-0 left-0 h-full w-full'
-            : 'top-1/2 left-1/2 min-h-32 min-w-64'
+            : 'top-1/2 left-1/2 flex max-h-full min-h-32 max-w-screen min-w-64 flex-col'
         } ${windowData.isMinimized ? 'hidden' : ''}`}
         style={{ zIndex: windowData.z ?? 100 }}
         onClick={handleFocus}
@@ -154,7 +154,7 @@ export function WindowView({ windowData }: WindowViewProps) {
           </div>
         </header>
 
-        <div className="p-0.5">
+        <div className="flex-1 overflow-y-auto p-0.5">
           {ProgramComponent ? <ProgramComponent /> : 'Conteúdo da Janela.'}
         </div>
       </div>
