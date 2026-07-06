@@ -38,6 +38,7 @@ export function WindowView({ windowData }: WindowViewProps) {
   const program = PROGRAMS_DATA[windowData.id];
   const ProgramComponent = program.component;
 
+  const [savedPosition, setSavedPosition] = useState({ x: 0, y: 0 });
   const [bounds, setBounds] = useState({
     left: 0,
     right: 0,
@@ -90,11 +91,14 @@ export function WindowView({ windowData }: WindowViewProps) {
       cancel="button"
       bounds={bounds}
       disabled={windowData.isMaximized}
-      position={windowData.isMaximized ? { x: 0, y: 0 } : undefined}
+      position={windowData.isMaximized ? { x: 0, y: 0 } : savedPosition}
       positionOffset={
-        windowData.isMaximized ? { x: '0', y: '0' } : { x: '-50%', y: '-50%' }
+        windowData.isMaximized ? { x: 0, y: 0 } : { x: '-50%', y: '-50%' }
       }
       onStart={handleStart}
+      onStop={(_, data) => {
+        setSavedPosition({ x: data.x, y: data.y });
+      }}
     >
       <div
         className={`out-3d bg-base absolute p-0.5 ${
