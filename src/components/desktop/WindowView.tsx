@@ -18,6 +18,19 @@ interface WindowViewProps {
   windowData: AppWindow;
 }
 
+const renderIcon = (pathData: string, strokeWidth = 1) => (
+  <svg
+    xmlns="http://w3.org"
+    viewBox="0 0 16 16"
+    width="16"
+    height="16"
+    stroke="currentColor"
+    strokeWidth={strokeWidth}
+  >
+    <path fill="none" d={pathData} />
+  </svg>
+);
+
 export function WindowView({ windowData }: WindowViewProps) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -25,6 +38,7 @@ export function WindowView({ windowData }: WindowViewProps) {
   const program = PROGRAMS_DATA[windowData.id];
   const ProgramComponent = program.component;
 
+  const [savedPosition, setSavedPosition] = useState({ x: 0, y: 0 });
   const [bounds, setBounds] = useState({
     left: 0,
     right: 0,
@@ -77,17 +91,20 @@ export function WindowView({ windowData }: WindowViewProps) {
       cancel="button"
       bounds={bounds}
       disabled={windowData.isMaximized}
-      position={windowData.isMaximized ? { x: 0, y: 0 } : undefined}
+      position={windowData.isMaximized ? { x: 0, y: 0 } : savedPosition}
       positionOffset={
-        windowData.isMaximized ? { x: '0', y: '0' } : { x: '-50%', y: '-50%' }
+        windowData.isMaximized ? { x: 0, y: 0 } : { x: '-50%', y: '-50%' }
       }
       onStart={handleStart}
+      onStop={(_, data) => {
+        setSavedPosition({ x: data.x, y: data.y });
+      }}
     >
       <div
         className={`out-3d bg-base absolute p-0.5 ${
           windowData.isMaximized
             ? 'top-0 left-0 h-full w-full'
-            : 'top-1/2 left-1/2 min-h-32 min-w-64'
+            : 'top-1/2 left-1/2 flex max-h-full min-h-32 max-w-screen min-w-64 flex-col'
         } ${windowData.isMinimized ? 'hidden' : ''}`}
         style={{ zIndex: windowData.z ?? 100 }}
         onClick={handleFocus}
@@ -111,7 +128,7 @@ export function WindowView({ windowData }: WindowViewProps) {
               title="Minimizar"
               onClick={handleMinimize}
             >
-              &#128469;
+              {renderIcon('M3 12h10M3 13h10')}
             </Button3D>
 
             <Button3D
@@ -120,7 +137,11 @@ export function WindowView({ windowData }: WindowViewProps) {
               onClick={handleMaximize}
               disabled={!program.allowFullscreen}
             >
-              {windowData.isMaximized ? '\uD83D\uDDD7' : '\uD83D\uDDD6'}
+              {renderIcon(
+                windowData.isMaximized
+                  ? 'M5 3h9M5 4h9M5 5h1M13 5h1M5 6h1M13 6h1M2 7h9M13 7h1M2 8h9M13 8h1M2 9h1M10 9h4M2 10h1M10 10h1M2 11h1M10 11h1M2 12h1M10 12h1M2 13h9'
+                  : 'M2 3h12M2 4h12M2 5h12M2 6h1M13 6h1M2 7h1M13 7h1M2 8h1M13 8h1M2 9h1M13 9h1M2 10h1M13 10h1M2 11h1M13 11h1M2 12h1M13 12h1M2 13h12'
+              )}
             </Button3D>
 
             <Button3D
@@ -128,12 +149,12 @@ export function WindowView({ windowData }: WindowViewProps) {
               title="Fechar"
               onClick={handleClose}
             >
-              &#10005;
+              {renderIcon('M3 3L13 13M13 3L3 13', 1.4)}
             </Button3D>
           </div>
         </header>
 
-        <div className="p-0.5">
+        <div className="flex-1 overflow-y-auto p-0.5">
           {ProgramComponent ? <ProgramComponent /> : 'Conteúdo da Janela.'}
         </div>
       </div>
